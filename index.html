@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#1a1208" />
+  <title>Oregon Bound</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <section id="screen-title" class="screen active">
+      <div class="brand">
+        <div class="subtitle">1848 · Independence to Oregon</div>
+        <h1>Oregon Bound</h1>
+        <svg class="wagon-art" viewBox="0 0 180 90" aria-hidden="true">
+          <path d="M10 62 H170" stroke="#6b5428" stroke-width="3"/>
+          <path d="M38 62 Q62 22 90 20 Q118 22 142 62" fill="#e8d5b0" stroke="#5a4030" stroke-width="2"/>
+          <rect x="70" y="36" width="18" height="14" fill="#3d2a14" stroke="#5a4030"/>
+          <circle cx="52" cy="66" r="14" fill="none" stroke="#c4a574" stroke-width="3"/>
+          <circle cx="128" cy="66" r="14" fill="none" stroke="#c4a574" stroke-width="3"/>
+          <circle cx="52" cy="66" r="3" fill="#c4a574"/>
+          <circle cx="128" cy="66" r="3" fill="#c4a574"/>
+          <path d="M20 50 L42 40" stroke="#8b6914" stroke-width="3"/>
+          <circle cx="148" cy="18" r="8" fill="#d4a017"/>
+        </svg>
+        <p class="muted center">An unofficial wagon-trail game.<br/>Not affiliated with the original Oregon Trail.</p>
+      </div>
+      <div class="grow"></div>
+      <button class="btn primary" id="btn-new">New Journey</button>
+      <button class="btn ghost" id="btn-continue" hidden>Continue Saved Journey</button>
+      <p class="fine-print">Add to Home Screen in Safari to install. Requires no App Store account.</p>
+    </section>
+
+    <section id="screen-setup" class="screen">
+      <h2>Outfit the Company</h2>
+      <div class="grow">
+        <label for="leader">Wagon captain</label>
+        <input id="leader" type="text" maxlength="16" placeholder="Your name" autocomplete="name" />
+        <label for="job">Occupation</label>
+        <div id="job-list"></div>
+        <label for="month">Leave Independence</label>
+        <select id="month"></select>
+        <label>Companions</label>
+        <input class="mate" type="text" maxlength="14" placeholder="Companion 1" />
+        <input class="mate" type="text" maxlength="14" placeholder="Companion 2" style="margin-top:6px" />
+        <input class="mate" type="text" maxlength="14" placeholder="Companion 3" style="margin-top:6px" />
+        <input class="mate" type="text" maxlength="14" placeholder="Companion 4" style="margin-top:6px" />
+      </div>
+      <button class="btn primary" id="btn-to-store">Go to Matt's General Store</button>
+      <button class="btn ghost" id="btn-setup-back">Back</button>
+    </section>
+
+    <section id="screen-store" class="screen">
+      <h2>Matt's General Store</h2>
+      <p class="muted" id="store-cash"></p>
+      <div class="grow" id="store-list"></div>
+      <div class="row">
+        <button class="btn ghost" id="btn-store-back">Back</button>
+        <button class="btn primary" id="btn-leave-town">Hit the trail</button>
+      </div>
+    </section>
+
+    <section id="screen-trail" class="screen">
+      <h2 id="place-name">The Trail</h2>
+      <div class="status-grid" id="stats"></div>
+      <ul class="party-list" id="party"></ul>
+      <div class="log" id="log"></div>
+      <div class="grow"></div>
+      <div class="row">
+        <button class="btn" id="btn-pace">Pace</button>
+        <button class="btn" id="btn-rations">Rations</button>
+      </div>
+      <div class="row">
+        <button class="btn" id="btn-hunt">Hunt</button>
+        <button class="btn" id="btn-rest">Rest</button>
+      </div>
+      <button class="btn primary" id="btn-travel">Continue on the trail</button>
+    </section>
+
+    <section id="screen-hunt" class="screen">
+      <h2>Hunting Grounds</h2>
+      <p class="muted" id="hunt-status">Tap animals. Don't waste powder.</p>
+      <canvas id="hunt-canvas" width="360" height="220"></canvas>
+      <p class="muted center" id="hunt-score"></p>
+      <div class="grow"></div>
+      <button class="btn primary" id="btn-leave-hunt">Return to wagon</button>
+    </section>
+
+    <section id="screen-end" class="screen">
+      <h2 id="end-title">Journey's End</h2>
+      <p id="end-text"></p>
+      <div class="grow"></div>
+      <button class="btn primary" id="btn-again">Start another journey</button>
+    </section>
+  </div>
+
+  <div class="modal-back" id="modal">
+    <div class="modal">
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+      <div id="modal-actions"></div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
